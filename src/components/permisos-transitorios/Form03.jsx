@@ -40,7 +40,7 @@ const Form03 = () => {
 
     // Validar campos
     useEffect(() => {
-        if (name && place && startDate && startTime && endDate && endTime && alcohol && food && description && purpose) {
+        if (name.length >= 3 && place.length >= 3 && startDate && startTime && endDate && endTime && alcohol && food && description.length >= 3 && purpose.length >= 3) {
             setIsValid(true)
 
         } else {

@@ -72,11 +72,15 @@ const Form04 = () => {
                 valid = false;
                 errorMsg = "La fecha de inicio no puede ser posterior a la fecha de término";
             }
+            if (files.length > 10) {
+                valid = false
+                errorMsg = "No se puede subir más de 10 archivos."
+            }
         }
 
         setIsValid(valid);
         setErrorMessage(errorMsg);
-    }, [formData]);
+    }, [formData, files.length]);
 
 
     // Función para manejar la acción del botón "Enviar solicitud"

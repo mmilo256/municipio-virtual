@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import Input from "../ui/Input"
 import { useEffect, useState } from "react"
 import usePermisosTransitoriosStore from "../../stores/usePermisosTransitoriosStore"
-import { formatRut, onlyNumberInput, validateEmail } from "../../utils/utils"
+import { formatRut, onlyNumberInput, validateEmail, verifyRut } from "../../utils/utils"
 import { ORG_TYPES } from "../../constants/constants"
 import Button from "../ui/Button"
 import Container from "../ui/Container"
@@ -33,7 +33,7 @@ const Form01 = () => {
 
     // Validar campos
     useEffect(() => {
-        if (name && rut && address && email && phone && orgType) {
+        if (name.length >= 3 && rut.length >= 10 && address.length > 3 && email.length > 5 && phone.length >= 8 && orgType) {
             if (validateEmail(email)) {
                 setIsValid(true)
             } else {
@@ -46,22 +46,26 @@ const Form01 = () => {
 
     // Función para navegar a la página siguiente y actualizar los datos de la organización en el store
     const onClickNext = () => {
-        // Crea un objeto con los datos del formulario
-        const data = {
-            name,
-            rut,
-            address,
-            email,
-            phone,
-            orgType
+        const isRutValid = verifyRut(rut)
+        if (isRutValid) {
+            // Crea un objeto con los datos del formulario
+            const data = {
+                name,
+                rut,
+                address,
+                email,
+                phone,
+                orgType
+            }
+            // Actualiza el estado global con los datos de la organización
+            setOrgData(data)
+            // Navega a la página de datos del representante
+            navigate("/permisos-transitorios/datos-representante")
+        } else {
+            alert("El RUT no es válido. Revisa todos los dígitos e intenta de nuevo.")
         }
-        // Actualiza el estado global con los datos de la organización
-        setOrgData(data)
-        // Navega a la página de datos del representante
-        navigate("/permisos-transitorios/datos-representante")
+
     }
-
-
 
     return (
         <Container>

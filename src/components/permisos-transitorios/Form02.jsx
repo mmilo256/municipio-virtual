@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import Input from "../ui/Input"
 import usePermisosTransitoriosStore from "../../stores/usePermisosTransitoriosStore"
 import { useEffect, useState } from "react"
-import { formatRut, onlyNumberInput, validateEmail } from "../../utils/utils"
+import { formatRut, onlyNumberInput, validateEmail, verifyRut } from "../../utils/utils"
 import Container from "../ui/Container"
 import Heading from "../ui/Heading"
 import Button from "../ui/Button"
@@ -33,7 +33,7 @@ const Form02 = () => {
 
     // Validar campos
     useEffect(() => {
-        if (name && rut && address && email && phone) {
+        if (name.length >= 3 && rut.length >= 10 && address.length >= 3 && email.length >= 5 && phone.length >= 8) {
             if (validateEmail(email)) {
                 setIsValid(true)
             } else {
@@ -46,19 +46,25 @@ const Form02 = () => {
 
     // Función para navegar a la página siguiente y actualizar los datos de la organización en el store
     const onClickNext = () => {
-        // Crea un objeto con los datos del formulario
-        const data = {
-            name,
-            rut,
-            address,
-            email,
-            phone,
-            phone2
+        const isRutValid = verifyRut(rut)
+        if (isRutValid) {
+            // Crea un objeto con los datos del formulario
+            const data = {
+                name,
+                rut,
+                address,
+                email,
+                phone,
+                phone2
+            }
+            // Actualiza el estado global con los datos de la organización
+            setPersonData(data)
+            // Navega a la página de datos del representante
+            navigate("/permisos-transitorios/detalles-permiso")
+        } else {
+            alert("El RUT no es válido. Revisa todos los dígitos e intenta de nuevo.")
         }
-        // Actualiza el estado global con los datos de la organización
-        setPersonData(data)
-        // Navega a la página de datos del representante
-        navigate("/permisos-transitorios/detalles-permiso")
+
     }
 
     return (
