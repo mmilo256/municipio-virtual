@@ -3,21 +3,8 @@ import Home from "./components/Home"
 import Navbar from "./components/ui/Navbar"
 import PermisosTransitorios from "./components/permisos-transitorios/PermisosTransitorios"
 import Footer from "./components/ui/Footer"
-import { useEffect, useState } from "react"
-import { getAllApplications } from "./services/webFormServices"
 
 function App() {
-
-  const [req, setReq] = useState([])
-
-  useEffect(() => {
-    (async () => {
-      const data = await getAllApplications()
-      setReq(data)
-    })()
-  }, [])
-
-  console.log(req)
 
   return (
     <div className="min-h-screen flex flex-col">
