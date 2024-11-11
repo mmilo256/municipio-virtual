@@ -15,7 +15,7 @@ function App() {
       const data = await getAllApplications()
       setReq(data)
     })()
-  })
+  }, [])
 
   console.log(req)
 
