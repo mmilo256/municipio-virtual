@@ -7,6 +7,9 @@ import { createApplication } from "../../services/webFormServices"
 import Container from "../ui/Container"
 import Heading from "../ui/Heading"
 import Button from "../ui/Button"
+import { sendEmail } from "../../services/emailServices"
+
+const EMAIL_PARTES = "emiliosotoandrade256@gmail.com"
 
 const Form04 = () => {
 
@@ -120,6 +123,38 @@ const Form04 = () => {
         if (isValid) {
             try {
                 await createApplication(data, config)
+                const emailTemplate = `
+                <div style="max-width: 28rem; margin: 0 auto; padding: 1.5rem; font-family: sans-serif; background-color: #f9fafb; border-radius: 0.5rem; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div style="background-color: #2563eb; color: white; padding: 1rem; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; text-align: center;">
+                        <h1 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Notificación de Nueva Solicitud de Permiso</h1>
+                    </div>
+                    <div style="padding: 1.5rem; background-color: white; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem;">
+                        <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Estimado/a Funcionario/a:</h2>
+                        <p style="margin-bottom: 1rem;">Ha llegado una nueva solicitud de permiso que requiere ser ingresada en el Sistema de Gestión Documental.</p>
+                        <p style="font-weight: bold; margin-bottom: 0.5rem;">Detalles de la solicitud:</p>
+                        <div style="padding: 1rem; background-color: #f3f4f6; border-radius: 0.5rem; margin-bottom: 1rem;">
+                            <p>Actividad: <strong>${formData.permissionData.name}</strong></p>
+                            <p>Ubicación: <strong>${formData.permissionData.place}</strong></p>
+                            <p>¿Consumo y/o venta de alcohol?: <strong>${formData.permissionData.alcohol ? "Sí" : "No"}</strong></p>
+                            <p>¿Consumo y/o venta de alimentos?: <strong>${formData.permissionData.food ? "Sí" : "No"}</strong></p>
+                            <p>Fecha y hora de inicio: <strong>${formData.permissionData.startDate}, ${formData.permissionData.startTime}</strong></p>
+                            <p>Fecha y hora de término: <strong>${formData.permissionData.endDate}, ${formData.permissionData.endTime}</strong></p>
+                            <p>Descripción: <strong>${formData.permissionData.description}</strong></p>
+                            <p>Destino de los fondos: <strong>${formData.permissionData.purpose}</strong></p>
+                        </div>
+                        <hr style="margin: 1rem 0;">
+                        <p style="margin-bottom: 1rem;">Por favor, ingrese esta solicitud en el sistema y reenvíe este correo a Administración Municipal indicando el número de folio asignado.</p>
+                        <p style="margin-bottom: 1rem;">
+                            Atentamente,<br>
+                            Ilustre Municipalidad de Chonchi
+                        </p>
+                    </div>
+                    <div style="text-align: center; font-size: 0.75rem; color: #6b7280; margin-top: 1rem;">
+                        <p>Este es un correo automático, por favor no responda.</p>
+                    </div>
+                </div>
+                `
+                await sendEmail(EMAIL_PARTES, "SOLICITUD DE PERMISO: INGRESAR EN SISTEMA DE GESTIÓN DOCUMENTAL", emailTemplate)
                 navigate("/permisos-transitorios/solicitud-enviada")
             } catch (error) {
                 console.log(error)
