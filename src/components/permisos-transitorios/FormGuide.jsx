@@ -8,12 +8,8 @@ const FormGuide = () => {
         <Layout>
             <Container>
                 <Heading level={1}>Solicitud de Autorización <br /> Especial Transitoria</Heading>
-
-
                 <p className="text-xl font-bold mb-2">Instrucciones</p>
                 <p className="text-sm mb-4">La solicitud debe realizarse con al menos <span className="font-semibold">5 días hábiles</span> de anticipación y será evaluada por la <span className="font-semibold">Dirección de Administración Municipal</span>. Las autorizaciones se otorgarán por un <span className="font-semibold">máximo de 3 días</span>. Tras la actividad, la organización deberá informar el uso de los fondos a la <span className="font-semibold">Dirección de Desarrollo Comunitario</span> en un <span className="font-semibold">plazo de 30 días</span>. No se otorgarán permisos a quienes tengan <span className="font-semibold">rendiciones pendientes ni más de 3 autorizaciones por año para el expendio de alcohol</span>, excepto en fiestas nacionales o eventos turísticos. La limpieza y seguridad son responsabilidad de los organizadores.</p>
-
-
                 <p className="text-xl font-bold mb-2">Requisitos</p>
                 <p className="text-sm bg-amber-200 inline-block px-2 py-1 mb-2 text-amber-800 ">IMPORTANTE: Antes de continuar con la solicitud, asegúrese de contar con los siguientes antecedentes digitalizados</p>
                 <ul className="list-disc list-inside mb-3 text-sm">
