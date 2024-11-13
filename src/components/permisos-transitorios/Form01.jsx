@@ -7,6 +7,7 @@ import { ORG_TYPES } from "../../constants/constants"
 import Button from "../ui/Button"
 import Container from "../ui/Container"
 import Heading from "../ui/Heading"
+import Layout from "../Layout"
 
 const Form01 = () => {
     // Obtiene datos del formulario y la función para actualizar datos de la organización desde el store
@@ -68,25 +69,27 @@ const Form01 = () => {
     }
 
     return (
-        <Container>
-            <form>
-                <Heading align="left">Solicitud de Autorización Transitoria</Heading>
-                <Heading align="left" level={3}>1. Datos de la organización</Heading>
-                <div className="grid md:grid-cols-2 gap-5">
-                    {/* Renderiza los campos del formulario con valores y manejadores de cambio */}
-                    <Input max={90} placeholder="Nombre de la organización" value={name} onChange={(e) => { setName(e.target.value) }} label="Nombre o razón social" />
-                    <Input max={12} placeholder="77.777.777-K" value={rut} onChange={(e) => { setRut(formatRut(e.target.value)) }} label="RUT" />
-                    <Input max={90} placeholder="José Pinto Pérez 1037" value={address} onChange={(e) => { setAddress(e.target.value) }} label="Domicilio" />
-                    <Input max={40} placeholder="ejemplo@gmail.com" value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" label="Correo electrónico" />
-                    <Input max={9} placeholder="942250219" value={phone} onChange={(e) => { setPhone(onlyNumberInput(e.target.value)) }} type="text" label="Teléfono" />
-                    <Input value={orgType} onChange={(e) => { setOrgType(e.target.value) }} type="select" options={ORG_TYPES} label="Tipo de organización" />
-                </div>
-                <div className="flex justify-end py-5 gap-4">
-                    <Button onClick={onClickPrev} variant="secondary">Atrás</Button>
-                    <Button disabled={!isValid} onClick={onClickNext}>Siguiente</Button>
-                </div>
-            </form>
-        </Container>
+        <Layout>
+            <Container>
+                <form>
+                    <Heading align="left">Solicitud de Autorización Transitoria</Heading>
+                    <Heading align="left" level={3}>1. Datos de la organización</Heading>
+                    <div className="grid md:grid-cols-2 gap-5">
+                        {/* Renderiza los campos del formulario con valores y manejadores de cambio */}
+                        <Input max={90} placeholder="Nombre de la organización" value={name} onChange={(e) => { setName(e.target.value) }} label="Nombre o razón social" />
+                        <Input max={12} placeholder="77.777.777-K" value={rut} onChange={(e) => { setRut(formatRut(e.target.value)) }} label="RUT" />
+                        <Input max={90} placeholder="José Pinto Pérez 1037" value={address} onChange={(e) => { setAddress(e.target.value) }} label="Domicilio" />
+                        <Input max={40} placeholder="ejemplo@gmail.com" value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" label="Correo electrónico" />
+                        <Input max={9} placeholder="942250219" value={phone} onChange={(e) => { setPhone(onlyNumberInput(e.target.value)) }} type="text" label="Teléfono" />
+                        <Input value={orgType} onChange={(e) => { setOrgType(e.target.value) }} type="select" options={ORG_TYPES} label="Tipo de organización" />
+                    </div>
+                    <div className="flex justify-end py-5 gap-4">
+                        <Button onClick={onClickPrev} variant="secondary">Atrás</Button>
+                        <Button disabled={!isValid} onClick={onClickNext}>Siguiente</Button>
+                    </div>
+                </form>
+            </Container>
+        </Layout>
     )
 }
 

@@ -1,11 +1,11 @@
 import CardsGrid from "./CardsGrid"
+import Layout from "./Layout"
 import Container from "./ui/Container"
 import Heading from "./ui/Heading"
 
 const Home = () => {
     return (
-        <div>
-
+        <Layout>
             <div style={{ backgroundPosition: 'center 70%' }} className="relative bg-[url('/chonchi-aereo.jpg')] bg-cover bg-center py-32 mb-2">
                 <div className="absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center">
                     <Container>
@@ -17,8 +17,7 @@ const Home = () => {
             <Heading level={3}>Servicios disponibles</Heading>
 
             <CardsGrid />
-
-        </div>
+        </Layout>
     )
 }
 

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import Button from "../ui/Button"
 import Heading from "../ui/Heading"
 import Container from "../ui/Container"
+import Layout from "../Layout"
 
 // Opciones para los campos de radio (Sí/No)
 const opYesNo = [{ label: "Si", value: "true" }, { label: "No", value: "false" }]
@@ -70,42 +71,44 @@ const Form03 = () => {
     }
 
     return (
-        <Container>
-            <form>
-                <Heading align="left">Solicitud de Autorización Transitoria</Heading>
-                <Heading align="left" level={3}>1. Detalles del permiso</Heading>
-                <div className="grid md:grid-cols-2 gap-5">
-                    <div className="md:col-span-2">
-                        <Input max={90} placeholder="Ej: Bingo bailable" value={name} onChange={(e) => { setName(e.target.value) }} label="Nombre de la actividad" />
+        <Layout>
+            <Container>
+                <form>
+                    <Heading align="left">Solicitud de Autorización Transitoria</Heading>
+                    <Heading align="left" level={3}>1. Detalles del permiso</Heading>
+                    <div className="grid md:grid-cols-2 gap-5">
+                        <div className="md:col-span-2">
+                            <Input max={90} placeholder="Ej: Bingo bailable" value={name} onChange={(e) => { setName(e.target.value) }} label="Nombre de la actividad" />
+                        </div>
+                        <div className="md:col-span-2">
+                            <Input max={90} placeholder="Ej: Gimnasio Municipal" value={place} onChange={(e) => { setPlace(e.target.value) }} label="Lugar de realización" />
+                        </div>
+                        <Input value={startDate} onChange={(e) => { setStartDate(e.target.value) }} type="date" label="Fecha de inicio" />
+                        <Input value={startTime} onChange={(e) => { setStartTime(e.target.value) }} type="time" label="Hora de inicio" />
+                        <Input value={endDate} onChange={(e) => { setEndDate(e.target.value) }} type="date" label="Fecha de término" />
+                        <Input value={endTime} onChange={(e) => { setEndTime(e.target.value) }} type="time" label="Hora de término" />
+                        <div className="md:col-span-2">
+                            {/* Grupo de botones de radio para consumo de alcohol */}
+                            <RadioGroup selectedValue={alcohol} onChange={setAlcohol} label="Consumo de alcohol" options={opYesNo} name="alcohol" />
+                        </div>
+                        {/* Grupo de botones de radio para venta de alimentos */}
+                        <RadioGroup selectedValue={food} onChange={setFood} label="Venta de alimentos" options={opYesNo} name="alimentos" />
+                        <div className="md:col-span-4">
+                            {/* Campo de texto para descripción de la actividad */}
+                            <Input max={250} placeholder="Breve descripción de la actividad a realizar" value={description} onChange={(e) => { setDescription(e.target.value) }} type="textarea" label="Descripción de la actividad" />
+                        </div>
+                        <div className="md:col-span-4">
+                            {/* Campo de texto para destino de los fondos */}
+                            <Input max={250} placeholder="Indicar para qué se usarán los fondos recaudados" value={purpose} onChange={(e) => { setPurpose(e.target.value) }} type="textarea" label="Destino de los fondos" />
+                        </div>
                     </div>
-                    <div className="md:col-span-2">
-                        <Input max={90} placeholder="Ej: Gimnasio Municipal" value={place} onChange={(e) => { setPlace(e.target.value) }} label="Lugar de realización" />
+                    <div className="flex justify-end py-5 gap-4">
+                        <Button onClick={onClickPrev} variant="secondary">Atrás</Button>
+                        <Button disabled={!isValid} onClick={onClickNext}>Siguiente</Button>
                     </div>
-                    <Input value={startDate} onChange={(e) => { setStartDate(e.target.value) }} type="date" label="Fecha de inicio" />
-                    <Input value={startTime} onChange={(e) => { setStartTime(e.target.value) }} type="time" label="Hora de inicio" />
-                    <Input value={endDate} onChange={(e) => { setEndDate(e.target.value) }} type="date" label="Fecha de término" />
-                    <Input value={endTime} onChange={(e) => { setEndTime(e.target.value) }} type="time" label="Hora de término" />
-                    <div className="md:col-span-2">
-                        {/* Grupo de botones de radio para consumo de alcohol */}
-                        <RadioGroup selectedValue={alcohol} onChange={setAlcohol} label="Consumo de alcohol" options={opYesNo} name="alcohol" />
-                    </div>
-                    {/* Grupo de botones de radio para venta de alimentos */}
-                    <RadioGroup selectedValue={food} onChange={setFood} label="Venta de alimentos" options={opYesNo} name="alimentos" />
-                    <div className="md:col-span-4">
-                        {/* Campo de texto para descripción de la actividad */}
-                        <Input max={250} placeholder="Breve descripción de la actividad a realizar" value={description} onChange={(e) => { setDescription(e.target.value) }} type="textarea" label="Descripción de la actividad" />
-                    </div>
-                    <div className="md:col-span-4">
-                        {/* Campo de texto para destino de los fondos */}
-                        <Input max={250} placeholder="Indicar para qué se usarán los fondos recaudados" value={purpose} onChange={(e) => { setPurpose(e.target.value) }} type="textarea" label="Destino de los fondos" />
-                    </div>
-                </div>
-                <div className="flex justify-end py-5 gap-4">
-                    <Button onClick={onClickPrev} variant="secondary">Atrás</Button>
-                    <Button disabled={!isValid} onClick={onClickNext}>Siguiente</Button>
-                </div>
-            </form>
-        </Container>
+                </form>
+            </Container>
+        </Layout>
     )
 }
 

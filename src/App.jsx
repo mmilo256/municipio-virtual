@@ -1,25 +1,19 @@
 import { Route, Routes } from "react-router-dom"
 import Home from "./components/Home"
-import Navbar from "./components/ui/Navbar"
 import PermisosTransitorios from "./components/permisos-transitorios/PermisosTransitorios"
-import Footer from "./components/ui/Footer"
+import Login from "./components/Login"
 
 function App() {
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
+    < main className="flex-grow font-roboto" >
+      <Routes>
+        <Route index element={<Login />} />
+        <Route path="/inicio" element={<Home />} />
+        <Route path="/permisos-transitorios/*" element={<PermisosTransitorios />} />
+      </Routes>
+    </main >
 
-      {/* Contenido principal */}
-      <main className="flex-grow">
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/permisos-transitorios/*" element={<PermisosTransitorios />} />
-        </Routes>
-      </main>
-
-      <Footer />
-    </div>
   )
 }
 

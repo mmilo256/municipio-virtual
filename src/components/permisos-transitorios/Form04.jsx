@@ -8,6 +8,7 @@ import Container from "../ui/Container"
 import Heading from "../ui/Heading"
 import Button from "../ui/Button"
 import { sendEmail } from "../../services/emailServices"
+import Layout from "../Layout"
 
 const EMAIL_PARTES = "emiliosotoandrade256@gmail.com"
 
@@ -169,24 +170,26 @@ const Form04 = () => {
         <>
             <Alert variant="warning" text={errorMessage} visible={showAlert} setVisible={setShowAlert} />
 
-            <Container>
-                {/* Título principal del formulario */}
-                <Heading>Formulario de Solicitud de Autorización Especial Transitoria</Heading>
-                {/* Título específico para la sección del formulario */}
-                <Heading align="left" level={3}>4. Antecedentes</Heading>
-                {/* Renderiza los campos y componentes hijos del formulario */}
-                <form>
-                    <Upload files={files} setFiles={setFiles} label="Subir antecedentes y firma del representante legal" />
+            <Layout>
+                <Container>
+                    {/* Título principal del formulario */}
+                    <Heading>Formulario de Solicitud de Autorización Especial Transitoria</Heading>
+                    {/* Título específico para la sección del formulario */}
+                    <Heading align="left" level={3}>4. Antecedentes</Heading>
+                    {/* Renderiza los campos y componentes hijos del formulario */}
+                    <form>
+                        <Upload files={files} setFiles={setFiles} label="Subir antecedentes y firma del representante legal" />
 
-                    {/* Contenedor para los botones de navegación */}
-                    <div className="flex gap-2 justify-end border-t border-t-slate-300 mt-6 pt-6">
-                        {/* Botón para retroceder a la página anterior, si se proporciona la función onClickPrev */}
-                        {onClickPrev && <Button variant="secondary" type="button" onClick={onClickPrev}>Anterior</Button>}
-                        {/* Botón para avanzar al siguiente paso, si se proporciona la función onClickNext */}
-                        {onClickNext && <Button variant="primary" type="button" onClick={onClickNext}>Enviar solicitud</Button>}
-                    </div>
-                </form>
-            </Container>
+                        {/* Contenedor para los botones de navegación */}
+                        <div className="flex gap-2 justify-end border-t border-t-slate-300 mt-6 pt-6">
+                            {/* Botón para retroceder a la página anterior, si se proporciona la función onClickPrev */}
+                            {onClickPrev && <Button variant="secondary" type="button" onClick={onClickPrev}>Anterior</Button>}
+                            {/* Botón para avanzar al siguiente paso, si se proporciona la función onClickNext */}
+                            {onClickNext && <Button variant="primary" type="button" onClick={onClickNext}>Enviar solicitud</Button>}
+                        </div>
+                    </form>
+                </Container>
+            </Layout>
         </>
     )
 }
