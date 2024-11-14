@@ -10,7 +10,7 @@ export default {
         primary: "#06163A",
         primaryHover: "#0d2252",
         secondary: "#ff3514",
-        secondaryHover: "#eb5138"
+        secondaryHover: "#a3210b"
       },
       fontFamily: {
         'roboto': ['Roboto', 'sans-serif']

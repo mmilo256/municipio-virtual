@@ -86,8 +86,8 @@ const Form02 = () => {
                         <Input max={9} placeholder="932020239" value={phone2} onChange={(e) => { setPhone2(onlyNumberInput(e.target.value)) }} label="Teléfono 2 (opcional)" />
                     </div>
                     <div className="flex justify-end py-5 gap-4">
-                        <Button onClick={onClickPrev} variant="secondary">Atrás</Button>
-                        <Button disabled={!isValid} onClick={onClickNext}>Siguiente</Button>
+                        <Button onClick={onClickPrev} variant="tertiary">Anterior</Button>
+                        <Button disabled={!isValid} variant="secondary" onClick={onClickNext}>Siguiente</Button>
                     </div>
                 </form>
 

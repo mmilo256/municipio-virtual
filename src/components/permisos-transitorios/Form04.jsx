@@ -183,9 +183,9 @@ const Form04 = () => {
                         {/* Contenedor para los botones de navegación */}
                         <div className="flex gap-2 justify-end border-t border-t-slate-300 mt-6 pt-6">
                             {/* Botón para retroceder a la página anterior, si se proporciona la función onClickPrev */}
-                            {onClickPrev && <Button variant="secondary" type="button" onClick={onClickPrev}>Anterior</Button>}
+                            {onClickPrev && <Button variant="tertiary" type="button" onClick={onClickPrev}>Anterior</Button>}
                             {/* Botón para avanzar al siguiente paso, si se proporciona la función onClickNext */}
-                            {onClickNext && <Button variant="primary" type="button" onClick={onClickNext}>Enviar solicitud</Button>}
+                            {onClickNext && <Button variant="secondary" type="button" onClick={onClickNext}>Enviar solicitud</Button>}
                         </div>
                     </form>
                 </Container>

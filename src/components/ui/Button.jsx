@@ -6,16 +6,19 @@ const Button = ({ children, variant = "primary", type = "button", href, onClick,
     let buttonStyles;
     switch (variant) {
         case "primary":
-            buttonStyles = `bg-[#0F69C4] hover:bg-[#104B87] disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-3 px-5 font-bold  text-center ${fullWidth && "w-full"}`
+            buttonStyles = `bg-primary hover:bg-primaryHover disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-3 px-5 text-center ${fullWidth && "w-full"}`
             break
         case "secondary":
-            buttonStyles = `bg-white hover:bg-blue-100 border border-[#0F69C4] text-[#0F69C4] py-3 px-5 font-bold  text-center ${fullWidth && "w-full"}`
+            buttonStyles = `bg-secondary hover:bg-secondaryHover disabled:bg-red-400 disabled:cursor-not-allowed text-white py-3 px-5 text-center ${fullWidth && "w-full"}`
+            break
+        case "tertiary":
+            buttonStyles = `bg-none hover:bg-orange-50 py-3 px-5 text-center ${fullWidth && "w-full"}`
             break
         case "approval":
-            buttonStyles = `bg-green-600 hover:bg-green-500 disabled:bg-green-400 disabled:cursor-not-allowed text-white py-3 px-5 font-bold  text-center ${fullWidth && "w-full"}`
+            buttonStyles = `bg-green-600 hover:bg-green-500 disabled:bg-green-400 disabled:cursor-not-allowed text-white py-3 px-5 text-center ${fullWidth && "w-full"}`
             break
         case "reject":
-            buttonStyles = `bg-red-600 hover:bg-red-500 disabled:bg-red-400 disabled:cursor-not-allowed text-white py-3 px-5 font-bold  text-center ${fullWidth && "w-full"}`
+            buttonStyles = `bg-red-600 hover:bg-red-500 disabled:bg-red-400 disabled:cursor-not-allowed text-white py-3 px-5 text-center ${fullWidth && "w-full"}`
             break
     }
 

@@ -103,8 +103,8 @@ const Form03 = () => {
                         </div>
                     </div>
                     <div className="flex justify-end py-5 gap-4">
-                        <Button onClick={onClickPrev} variant="secondary">Atrás</Button>
-                        <Button disabled={!isValid} onClick={onClickNext}>Siguiente</Button>
+                        <Button onClick={onClickPrev} variant="tertiary">Anterior</Button>
+                        <Button disabled={!isValid} variant="secondary" onClick={onClickNext}>Siguiente</Button>
                     </div>
                 </form>
             </Container>
