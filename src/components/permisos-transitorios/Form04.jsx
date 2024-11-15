@@ -26,6 +26,7 @@ const Form04 = () => {
     const [files, setFiles] = useState(formData.docsData)
 
     const [isValid, setIsValid] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     // Hook para la navegación programática
     const navigate = useNavigate()
@@ -89,6 +90,7 @@ const Form04 = () => {
 
     // Función para manejar la acción del botón "Enviar solicitud"
     const onClickNext = async () => {
+        setLoading(true)
         // Actualiza el estado global con los archivos subidos
         await setDocsData(files)
         // Muestra un mensaje de éxito
@@ -159,6 +161,8 @@ const Form04 = () => {
                 navigate("/permisos-transitorios/solicitud-enviada")
             } catch (error) {
                 console.log(error)
+            } finally {
+                setLoading(false)
             }
         } else {
             setShowAlert(true)
@@ -185,7 +189,7 @@ const Form04 = () => {
                             {/* Botón para retroceder a la página anterior, si se proporciona la función onClickPrev */}
                             {onClickPrev && <Button variant="tertiary" type="button" onClick={onClickPrev}>Anterior</Button>}
                             {/* Botón para avanzar al siguiente paso, si se proporciona la función onClickNext */}
-                            {onClickNext && <Button variant="secondary" type="button" onClick={onClickNext}>Enviar solicitud</Button>}
+                            {onClickNext && <Button disabled={loading} variant="secondary" type="button" onClick={onClickNext}>Enviar solicitud</Button>}
                         </div>
                     </form>
                 </Container>

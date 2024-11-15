@@ -14,7 +14,8 @@ export const infoPermisosTransitorios = {
         "Certificado de vigencia de persona jurídica",
         "Documento que acredite la ocupación legal del recinto donde se realizará la actividad",
         "Declaración jurada simple que el presidente de la organización no está afecto a prohibiciones del artículo n°4 ley 19.925 de alcoholes (sólo si la autorización es con venta y consumo de alcohol)",
-        "Certificado de antecedentes para fines especiales del presidente de la organización (sólo si la autorización es con venta y consumo de alcohol)"
+        "Certificado de antecedentes para fines especiales del presidente de la organización (sólo si la autorización es con venta y consumo de alcohol)",
+        "Además, debe descargar el siguiente documento, imprimirlo, obtener la firma del representante legal de su organización, y luego subirlo al formulario junto con los demás antecedentes."
     ],
     costo: "No tiene costo",
     modalidadPago: "No requiere pago",

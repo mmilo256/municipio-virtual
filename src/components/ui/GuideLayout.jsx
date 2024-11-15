@@ -4,7 +4,7 @@ import Container from "./Container"
 import Heading from "./Heading"
 
 
-const GuideLayout = ({ onClick, data }) => {
+const GuideLayout = ({ onClick, data, extraReq }) => {
 
     return (
         <Layout>
@@ -14,11 +14,11 @@ const GuideLayout = ({ onClick, data }) => {
                 </div>
                 <div className="grid md:grid-cols-9 gap-5 text-slate-700">
                     <main className="md:col-span-6 pr-10">
-                        <article>
+                        <article className="mb-4">
                             <Heading align="left" level={3}>Descripción</Heading>
                             <p className="text-justify">{data.descripcion}</p>
                         </article>
-                        <article>
+                        <article className="mb-4">
                             <Heading align="left" level={3}>Información adicional</Heading>
                             <ul className="list-disc list-inside">
                                 {data.infoAdicional.map((info, index) => (
@@ -26,19 +26,20 @@ const GuideLayout = ({ onClick, data }) => {
                                 ))}
                             </ul>
                         </article>
-                        <article>
+                        <article className="mb-4">
                             <Heading align="left" level={3}>Requisitos</Heading>
                             <ul className="list-disc list-inside">
                                 {data.requisitos.map((info, index) => (
                                     <li key={index} className="mb-2">{info}</li>
                                 ))}
                             </ul>
+                            {extraReq}
                         </article>
-                        <article>
+                        <article className="mb-4">
                             <Heading align="left" level={3}>Costo</Heading>
                             <p>{data.costo}</p>
                         </article>
-                        <article>
+                        <article className="mb-4">
                             <Heading align="left" level={3}>Modalidad de pago</Heading>
                             <p>{data.modalidadPago}</p>
                         </article>
