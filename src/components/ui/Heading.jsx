@@ -1,21 +1,7 @@
 // src/components/Heading.jsx
-const Heading = ({ children, level = 1, align = "center", darkMode }) => {
+const Heading = ({ children, level = 1, className, darkMode }) => {
     const Tag = `h${level}`; // Determina la etiqueta (h1, h2, etc.) según el nivel
 
-    let textAlign
-    switch (align) {
-        case "center":
-            textAlign = "text-center"
-            break;
-        case "left":
-            textAlign = "text-left"
-            break;
-        case "right":
-            textAlign = "text-right"
-            break;
-        default:
-            break;
-    }
 
     let size
     switch (level) {
@@ -36,7 +22,7 @@ const Heading = ({ children, level = 1, align = "center", darkMode }) => {
     }
 
     return (
-        <Tag className={`font-semibold ${darkMode ? "text-white" : "text-primary"} ${size} ${textAlign}`}>
+        <Tag className={`font-semibold ${darkMode ? "text-white" : "text-primary"} ${size} ${className}`}>
             {children}
         </Tag>
     );
