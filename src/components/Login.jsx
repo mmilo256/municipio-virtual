@@ -1,14 +1,22 @@
-import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { API_URL } from "../constants/constants"
 import BotonClaveUnica from "./ui/BotonClaveUnica"
+import { getAccessToken } from "../services/authServices"
+import { useState } from "react"
 
 const Login = () => {
 
-    const navigate = useNavigate()
+    const [token, setToken] = useState("")
 
-    const login = () => {
-        console.log("hola")
-        navigate("/inicio")
-    }
+    useEffect(() => {
+        (async () => {
+            const data = await getAccessToken()
+            setToken(data)
+        })()
+    }, [])
+
+    console.log(token)
+
     return (
         <div className="grid lg:grid-cols-7 min-h-svh bg-slate-50">
             <div className="relative h-72 lg:h-auto col-span-4 bg-[url('/chonchi-aereo.jpg')]">
@@ -16,7 +24,7 @@ const Login = () => {
                     <h2 className="text-xl md:text-4xl opacity-50">Ilustre Municipalidad de Chonchi</h2>
                     <h1 className="text-4xl md:text-7xl font-bold">Municipio <span className="text-secondary">Virtual</span></h1>
                     <div className="mt-10 w-full px-8 md:hidden">
-                        <BotonClaveUnica className="w-full md:w-auto" onClick={login} />
+                        <BotonClaveUnica onClick={`${API_URL}/solicitar-autorizacion`} type="link" className="w-full md:w-auto" />
                     </div>
                 </div>
             </div>
@@ -33,7 +41,8 @@ const Login = () => {
                     </ol>
                 </div>
                 <div className="hidden md:block my-5">
-                    <BotonClaveUnica className="w-full md:w-auto lg:w-full ml-auto" onClick={login} />
+                    <BotonClaveUnica onClick={`${API_URL}/solicitar-autorizacion`} type="link" className="w-full md:w-auto lg:w-full ml-auto" />
+                    <button className="p-2 bg-slate-800 text-white">Botoncito</button>
                 </div>
             </div>
         </div>

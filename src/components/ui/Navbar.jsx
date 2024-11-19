@@ -32,10 +32,6 @@ const Navbar = () => {
         setToggleMenu(!toggleMenu)
     }
 
-    const handleLogout = () => {
-        setToggleMenu(false)
-    }
-
     return (
         <header>
             <div className='bg-primary h-20'>
@@ -54,7 +50,7 @@ const Navbar = () => {
                                 <li key={index} className='border-b border-b-slate-500 p-3'><a href={item.href}>{item.name}</a></li>
                             ))}
                             <div className='p-3 my-5'>
-                                <LogoutButton onClick={handleLogout} darkMode />
+                                <LogoutButton darkMode />
                             </div>
                         </ul>
                     </div>
