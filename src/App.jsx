@@ -3,8 +3,21 @@ import Home from "./components/Home"
 import PermisosTransitorios from "./components/permisos-transitorios/PermisosTransitorios"
 import Login from "./components/Login"
 import PrivateRoute from "./components/PrivateRoute"
+import { useEffect, useState } from "react"
+import { getAccessToken } from "./services/authServices"
 
 function App() {
+
+  const [token, setToken] = useState("")
+
+  useEffect(() => {
+    (async() => {
+      const data = await getAccessToken()
+      setToken(data)
+    })()
+  }, [])
+
+  console.log(token)
 
   return (
     < main className="flex-grow font-roboto" >

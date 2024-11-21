@@ -1,21 +1,7 @@
-import { useEffect } from "react"
 import { API_URL } from "../constants/constants"
 import BotonClaveUnica from "./ui/BotonClaveUnica"
-import { getAccessToken } from "../services/authServices"
-import { useState } from "react"
 
 const Login = () => {
-
-    const [token, setToken] = useState("")
-
-    useEffect(() => {
-        (async () => {
-            const data = await getAccessToken()
-            setToken(data)
-        })()
-    }, [])
-
-    console.log(token)
 
     return (
         <div className="grid lg:grid-cols-7 min-h-svh bg-slate-50">
@@ -42,7 +28,6 @@ const Login = () => {
                 </div>
                 <div className="hidden md:block my-5">
                     <BotonClaveUnica onClick={`${API_URL}/solicitar-autorizacion`} type="link" className="w-full md:w-auto lg:w-full ml-auto" />
-                    <button className="p-2 bg-slate-800 text-white">Botoncito</button>
                 </div>
             </div>
         </div>
