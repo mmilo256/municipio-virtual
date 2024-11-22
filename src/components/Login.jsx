@@ -1,21 +1,17 @@
 import { useEffect } from "react"
 import { API_URL } from "../constants/constants"
 import BotonClaveUnica from "./ui/BotonClaveUnica"
-import { getAccessToken } from "../services/authServices"
-import { useState } from "react"
+import { getUserInfo } from "../services/authServices"
 
 const Login = () => {
 
-    const [token, setToken] = useState("")
-
     useEffect(() => {
         (async () => {
-            const data = await getAccessToken()
-            setToken(data)
+            const data = await getUserInfo()
+            console.log(data)
         })()
-    }, [])
+    })
 
-    console.log(token)
 
     return (
         <div className="grid lg:grid-cols-7 min-h-svh bg-slate-50">
@@ -24,7 +20,7 @@ const Login = () => {
                     <h2 className="text-xl md:text-4xl opacity-50">Ilustre Municipalidad de Chonchi</h2>
                     <h1 className="text-4xl md:text-7xl font-bold">Municipio <span className="text-secondary">Virtual</span></h1>
                     <div className="mt-10 w-full px-8 md:hidden">
-                        <BotonClaveUnica onClick={`${API_URL}/solicitar-autorizacion`} type="link" className="w-full md:w-auto" />
+                        <BotonClaveUnica onClick={`${API_URL}/login`} type="link" className="w-full md:w-auto" />
                     </div>
                 </div>
             </div>
@@ -41,11 +37,10 @@ const Login = () => {
                     </ol>
                 </div>
                 <div className="hidden md:block my-5">
-                    <BotonClaveUnica onClick={`${API_URL}/solicitar-autorizacion`} type="link" className="w-full md:w-auto lg:w-full ml-auto" />
-                    <button className="p-2 bg-slate-800 text-white">Botoncito</button>
+                    <BotonClaveUnica onClick={`${API_URL}/login`} type="link" className="w-full md:w-auto lg:w-full ml-auto" />
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
