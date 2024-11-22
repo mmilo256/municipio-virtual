@@ -1,16 +1,7 @@
-import { useEffect } from "react"
 import { API_URL } from "../constants/constants"
 import BotonClaveUnica from "./ui/BotonClaveUnica"
-import { getUserInfo } from "../services/authServices"
 
 const Login = () => {
-
-    useEffect(() => {
-        (async () => {
-            const data = await getUserInfo()
-            console.log(data)
-        })()
-    })
 
 
     return (
