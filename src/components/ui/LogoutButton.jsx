@@ -2,18 +2,15 @@ import { useState } from 'react';
 import LogoutIcon from '../../assets/logout.svg?react';
 import { API_URL } from '../../constants/constants';
 import useAuthStore from '../../stores/useAuthStore';
-import { useNavigate } from 'react-router-dom';
 
 // CONSTANTES
 const LOGOUT_URL = "https://accounts.claveunica.gob.cl/api/v1/accounts/app/logout?redirect=logout_uri"
 
 
 // COMPONENTE
-const LogoutButton = ({darkMode = false }) => {
+const LogoutButton = ({ darkMode = false }) => {
 
     const user = useAuthStore(state => state.user)
-
-    const navigate = useNavigate()
 
     const getUserName = () => {
         let names = ""
@@ -34,7 +31,9 @@ const LogoutButton = ({darkMode = false }) => {
                 method: "POST",
                 credentials: 'include'
             })
-            navigate("/")
+            setTimeout(() => {
+                window.location.href = "https://municipalidadchonchi.cl/web/"
+            }, 1000);
         } catch (error) {
             console.log(error)
         }

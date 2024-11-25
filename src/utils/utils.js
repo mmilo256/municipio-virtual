@@ -1,3 +1,28 @@
+import { verifyToken } from "../services/authServices"
+
+// CONSTANTES
+
+
+// Verificar sesión de usuario
+export const verifySession = async (setUser, setLoading, setError) => {
+    let user
+    try {
+        user = await verifyToken()
+        setUser(user)
+    } catch (error) {
+        console.log("El token no existe o es inválido.", error.message)
+        if (setError) {
+            setError(true)
+        }
+        setUser(null)
+    } finally {
+        if (setLoading) {
+            setLoading(false)
+        }
+    }
+}
+
+
 // Formatear rut
 export const formatRut = (value) => {
     // Remover todos los caracteres que no sean dígitos o 'k'/'K'

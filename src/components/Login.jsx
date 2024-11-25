@@ -1,33 +1,27 @@
 import { useEffect } from "react"
 import { API_URL } from "../constants/constants"
 import BotonClaveUnica from "./ui/BotonClaveUnica"
-import { useState } from "react"
 import { Navigate } from "react-router-dom"
-import { verifyToken } from "../services/authServices"
 import useAuthStore from "../stores/useAuthStore"
+import { verifySession } from "../utils/utils"
 const Login = () => {
 
     const user = useAuthStore(state => state.user)
     const setUser = useAuthStore(state => state.setUser)
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        (async () => {
-            try {
-                const user = await verifyToken()
-                setUser(user)
-            } catch (error) {
-                console.error("No se pudo verificar el token.", error.message)
-                setUser(null)
-            } finally {
-                setLoading(false)
-            }
-        })()
+
+        verifySession(setUser)
+
     }, [setUser])
 
-    if (loading) {
+    /* if (loading) {
         return
     }
+
+    if (error) {
+        return <ErrorPage />
+    } */
 
     if (user) {
         return <Navigate to="/inicio" />
@@ -41,7 +35,7 @@ const Login = () => {
                     <h2 className="text-xl md:text-4xl opacity-50">Ilustre Municipalidad de Chonchi</h2>
                     <h1 className="text-4xl md:text-7xl font-bold">Municipio <span className="text-secondary">Virtual</span></h1>
                     <div className="mt-10 w-full px-8 md:hidden">
-                        <BotonClaveUnica onClick={`${API_URL}/login`} type="link" className="w-full md:w-auto" />
+                        <BotonClaveUnica className="w-full md:w-auto" />
                     </div>
                 </div>
             </div>
