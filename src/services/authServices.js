@@ -1,11 +1,12 @@
 import axios from "axios"
-// import { API_URL } from "../constants/constants"
+import { API_URL } from "../constants/constants"
 
-export const getUserInfo = async () => {
+export const verifyToken = async () => {
     try {
-        const response = await axios.get(`https://municipio-virtual.onrender.com/user-info/`, { withCredentials: true })
-        return response.data
+        const response = await axios.get(`${API_URL}/protected`, {withCredentials: true})
+        const data = response.data
+        return data
     } catch (error) {
-        console.log(error)
+        console.error(error.message)
     }
 }

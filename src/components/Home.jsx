@@ -4,6 +4,7 @@ import Container from "./ui/Container"
 import Heading from "./ui/Heading"
 
 const Home = () => {
+
     return (
         <Layout>
             <div style={{ backgroundPosition: 'center 70%' }} className="relative bg-[url('/chonchi-aereo.jpg')] bg-cover bg-center py-32 mb-2">

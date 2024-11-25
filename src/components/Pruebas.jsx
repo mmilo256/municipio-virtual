@@ -11,8 +11,12 @@ const Pruebas = () => {
     const button1 = async () => {
         const response = await fetch(`${API_URL}/user-info`, { credentials: "include" })
         const data = await response.json()
-        if (Object.values(data).length > 0) {
+        console.log(data)
+        if (data.data) {
+            sessionStorage.setItem('session', JSON.stringify(data))
+            alert("Redirigiendo a inicio...")
             navigate("/inicio")
+        
         } else {
             alert("No has iniciado sesión")
         }

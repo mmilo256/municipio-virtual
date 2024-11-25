@@ -1,7 +1,37 @@
+import { useEffect } from "react"
 import { API_URL } from "../constants/constants"
 import BotonClaveUnica from "./ui/BotonClaveUnica"
-
+import { useState } from "react"
+import { Navigate } from "react-router-dom"
+import { verifyToken } from "../services/authServices"
+import useAuthStore from "../stores/useAuthStore"
 const Login = () => {
+
+    const user = useAuthStore(state => state.user)
+    const setUser = useAuthStore(state => state.setUser)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const user = await verifyToken()
+                setUser(user)
+            } catch (error) {
+                console.error("No se pudo verificar el token.", error.message)
+                setUser(null)
+            } finally {
+                setLoading(false)
+            }
+        })()
+    }, [setUser])
+
+    if (loading) {
+        return
+    }
+
+    if (user) {
+        return <Navigate to="/inicio" />
+    }
 
 
     return (
