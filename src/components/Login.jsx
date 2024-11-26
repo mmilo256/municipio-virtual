@@ -1,27 +1,34 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { API_URL } from "../constants/constants"
 import BotonClaveUnica from "./ui/BotonClaveUnica"
 import { Navigate } from "react-router-dom"
-import useAuthStore from "../stores/useAuthStore"
-import { verifySession } from "../utils/utils"
+import { verifyToken } from "../services/authServices"
+
 const Login = () => {
 
-    const user = useAuthStore(state => state.user)
-    const setUser = useAuthStore(state => state.setUser)
+    const user = sessionStorage.getItem('session')
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        const verifySession = async () => {
+            try {
+                const user = await verifyToken()
+                sessionStorage.setItem('session', JSON.stringify(user.user))
+            } catch (error) {
+                console.log("El token no existe o es inválido.", error.message)
+                sessionStorage.removeItem('session')
+            } finally {
+                if (setLoading) {
+                    setLoading(false)
+                }
+            }
+        }
+        verifySession()
+    }, [])
 
-        verifySession(setUser)
-
-    }, [setUser])
-
-    /* if (loading) {
+    if (loading) {
         return
     }
-
-    if (error) {
-        return <ErrorPage />
-    } */
 
     if (user) {
         return <Navigate to="/inicio" />

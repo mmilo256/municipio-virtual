@@ -1,9 +1,26 @@
+import { useEffect, useState } from "react"
 import CardsGrid from "./CardsGrid"
 import Layout from "./Layout"
 import Container from "./ui/Container"
 import Heading from "./ui/Heading"
+import { fetchAllProcedures } from "../services/proceduresServices"
 
 const Home = () => {
+
+    const [procedures, setProcedures] = useState([])
+
+    useEffect(() => {
+        const loadProcedures = async () => {
+            const data = await fetchAllProcedures()
+            setProcedures(data)
+        }
+        loadProcedures()
+    }, [])
+
+    const formattedData = procedures.map(procedure => ({
+        ...procedure,
+        href: `/${procedure.nombre}`
+    }))
 
     return (
         <Layout>
@@ -17,7 +34,7 @@ const Home = () => {
             </div>
             <Heading className="text-center" level={3}>Servicios disponibles</Heading>
 
-            <CardsGrid />
+            <CardsGrid data={formattedData} />
         </Layout>
     )
 }

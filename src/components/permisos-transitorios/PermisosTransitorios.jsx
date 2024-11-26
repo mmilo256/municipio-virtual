@@ -5,17 +5,32 @@ import Form03 from "./Form03"
 import Form04 from "./Form04"
 import FormCompleted from "./FormCompleted"
 import GuideLayout from "../ui/GuideLayout"
-import { infoPermisosTransitorios } from "../../data/guidesData"
 import Button from "../ui/Button"
+import { useEffect, useState } from "react"
+import { fetchProcedureById } from "../../services/proceduresServices"
 
-const WebForm = () => {
+const PermisosTransitorios = () => {
 
+    // Estados
+    const [procedure, setProcedure] = useState({})
+
+    // Hooks
     const navigate = useNavigate()
+
+    // Obtener toda la información del trámite
+    useEffect(() => {
+        const loadProcedureData = async () => {
+            const procedure = await fetchProcedureById(1)
+            setProcedure(procedure)
+        }
+        loadProcedureData()
+    }, [])
 
     const iniciarTramite = () => {
         navigate("datos-organizacion")
     }
 
+    // Función para descargar documento
     const onDownloadDoc = () => {
         alert("Documento descargado")
     }
@@ -30,7 +45,7 @@ const WebForm = () => {
         <div>
             {/* Componente de navegación principal */}
             <Routes>
-                <Route path="/" element={<GuideLayout data={infoPermisosTransitorios} onClick={iniciarTramite} extraReq={<DownloadDocButton />} />} />
+                <Route path="/" element={<GuideLayout data={procedure} onClick={iniciarTramite} extraReq={<DownloadDocButton />} />} />
                 <Route path="datos-organizacion" element={<Form01 />} />
                 <Route path="datos-representante" element={<Form02 />} />
                 <Route path="detalles-permiso" element={<Form03 />} />
@@ -41,4 +56,4 @@ const WebForm = () => {
     )
 }
 
-export default WebForm
+export default PermisosTransitorios

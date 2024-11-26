@@ -14,9 +14,19 @@ export default {
       },
       fontFamily: {
         'roboto': ['Roboto', 'sans-serif']
-      }
+      },
+      animation: {
+        'bg-change': 'bgChange 1s infinite', // Animación personalizada
+      },
+      keyframes: {
+        bgChange: {
+          '0%': { backgroundColor: '#ddd' }, // Rojo al inicio
+          '50%': { backgroundColor: '#eee' }, // Azul a la mitad
+          '100%': { backgroundColor: '#ddd' }, // Rojo al final
+        },
+      },
     },
-  },
-  plugins: [],
+    plugins: [],
+  }
 }
 
